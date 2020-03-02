@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BookGUI.Services.ModelDTOs.ReviewerDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>@ViewBag.Message</h4>
+<div>
+    <h1>List of Reviewers</h1>
+    <br />
+    <div>
+        @foreach (var item in Model)
+        {
+        <p>
+            <strong>Reviewers Name : </strong>
+            <span>@item.FirstName</span>
+            <span>@item.LastName</span>
+            <a asp-controller="Reviewers" asp-action="GetReviewersById" asp-route-reviewerId="@item.Id">| Details</a>
+            <a asp-controller="Reviewers" asp-action="DeleteReviewers" asp-route-reviewerId="@item.Id">| Delete</a>
+        </p>
+            
+        }
+
+    </div>
+</div>
+
+
+
