@@ -32,7 +32,8 @@
             public static string GetReviews(string baseUri) => $"{baseUri}/reviews";
             public static string GetReviewById(string baseUri, int reviewId) => $"{baseUri}/reviews/{reviewId}";
 
-            public static string GetReviewsForABook(string baseUri, int bookId) => 
+            public static string GetReviewsForABook(string baseUri, int bookId) => $"{baseUri}/reviews/books/{bookId}";
+            public static string GetBookForAReview(string baseUri, int reviewId) => $"{baseUri}/reviews/{reviewId}/book";
         }
     }
 }
