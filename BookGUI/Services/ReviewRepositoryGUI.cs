@@ -1,4 +1,6 @@
-﻿using BookGUI.Services.ModelDTOs;
+﻿using BookGUI.Infrastructure;
+using BookGUI.Services.ModelDTOs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +20,21 @@ namespace BookGUI.Services
             _baseUri = "http://localhost:5000/api";
         }
 
-        public Task<BookDto> GetBookForAReview(int reviewId)
+        public async Task<BookDto> GetBookForAReview(int reviewId)
         {
-            throw new NotImplementedException();
+            BookDto book = new BookDto();
+
+            var uri = API.Review.GetBookForAReview(_baseUri, reviewId);
+
+            var response = await _client.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                book = JsonConvert.DeserializeObject<BookDto>(content);
+            }
+
+            return book;
         }
 
         public Task<ReviewDto> GetReviewById(int reviewId)
