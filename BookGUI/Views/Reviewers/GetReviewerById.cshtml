@@ -1,7 +1,35 @@
-﻿
+﻿@model BookGUI.ViewModels.ReviewerDetailViewModel
 @{
     ViewData["Title"] = "GetReviewerById";
 }
-
-<h1>GetReviewerById</h1>
+<h4>@ViewBag.Message</h4>
+<div>
+     <h1>Reviewer Detail</h1>
+     <br />
+     <div>
+            <h3>@Model.Reviewer.FirstName @Model.Reviewer.LastName</h3>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>Content</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.ReviewAndBook)
+                        {
+                            <tr>
+                                <td>@item.Value.Title</td>
+                                <td>@item.Key.ReviewText</td>
+                                <td>@item.Key.Rating</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+     </div>
+</div>
 

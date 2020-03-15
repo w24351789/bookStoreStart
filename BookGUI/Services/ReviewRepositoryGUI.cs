@@ -37,19 +37,58 @@ namespace BookGUI.Services
             return book;
         }
 
-        public Task<ReviewDto> GetReviewById(int reviewId)
+        public async Task<ReviewDto> GetReviewById(int reviewId)
         {
-            throw new NotImplementedException();
+            ReviewDto review = new ReviewDto();
+
+            var uri = API.Review.GetReviewById(_baseUri, reviewId);
+
+            var response = await _client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                review = JsonConvert.DeserializeObject<ReviewDto>(content);
+            }
+
+            return review;
         }
 
-        public Task<IEnumerable<ReviewDto>> GetReviews()
+        public async Task<IEnumerable<ReviewDto>> GetReviews()
         {
-            throw new NotImplementedException();
+            IEnumerable<ReviewDto> reviews = new List<ReviewDto>();
+
+            var uri = API.Review.GetReviews(_baseUri);
+
+            var response = await _client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                reviews = JsonConvert.DeserializeObject<IEnumerable<ReviewDto>>(content);
+            }
+
+            return reviews;
         }
 
-        public Task<IEnumerable<ReviewDto>> GetReviewsForABook(int bookId)
+        public async Task<IEnumerable<ReviewDto>> GetReviewsForABook(int bookId)
         {
-            throw new NotImplementedException();
+            IEnumerable<ReviewDto> reviews = new List<ReviewDto>();
+
+            var uri = API.Review.GetReviewsForABook(_baseUri, bookId);
+
+            var response = await _client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                reviews = JsonConvert.DeserializeObject<IEnumerable<ReviewDto>>(content);
+            }
+
+            return reviews;
         }
     }
 }

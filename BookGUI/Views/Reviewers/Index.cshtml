@@ -14,7 +14,7 @@
             <strong>Reviewers Name : </strong>
             <span>@item.FirstName</span>
             <span>@item.LastName</span>
-            <a asp-controller="Reviewers" asp-action="GetReviewersById" asp-route-reviewerId="@item.Id">| Details</a>
+            <a asp-controller="Reviewers" asp-action="GetReviewerById" asp-route-reviewerId="@item.Id">| Details</a>
             <a asp-controller="Reviewers" asp-action="DeleteReviewers" asp-route-reviewerId="@item.Id">| Delete</a>
         </p>
             
