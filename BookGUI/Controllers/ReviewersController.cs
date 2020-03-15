@@ -33,6 +33,7 @@ namespace BookGUI.Controllers
         //顯示該"評論者"詳細狀況，評論的"書籍"及"內容"
         public async Task<ActionResult> GetReviewerById(int reviewerId)
         {
+            //欲顯示reviewer 以及其每則review跟所評論的Book
             var reviewer = await _reviewerRepository.GetReviewerById(reviewerId);
             if(reviewer == null)
             {
